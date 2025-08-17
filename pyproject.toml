@@ -1,0 +1,10 @@
+[project]
+name = "Cloudflared-Caddy"
+description = "A Container which has Caddy built with the Cloudflared plugin"
+version = "0.1.0"
+requires-python = ">=3.8"
+
+[dependency-groups]
+freeze-locks = ["uv"]
+templating = ["Jinja2>=3.1.2"]
+
