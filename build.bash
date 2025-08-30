@@ -1,9 +1,18 @@
 set -eu
 
+FX_CAST_VERSION="0.3.0"
+arch=$(uname -m)
+
+if [[ "$arch" == "aarch64" ]]; then
+    arch="arm64"
+elif [[ "$arch" == "x86_64" ]]; then
+    arch="x64"
+fi
+
 # Setup fx_cast bridge
 temp_dir=$(mktemp -d)
 
-wget https://github.com/hensm/fx_cast/releases/download/v0.3.0/fx_cast_bridge-0.3.0-x64.rpm -O $temp_dir/fx_cast_bridge.rpm
+wget https://github.com/hensm/fx_cast/releases/download/v$FX_CAST_VERSION/fx_cast_bridge-$FX_CAST_VERSION-$arch.rpm -O $temp_dir/fx_cast_bridge.rpm
 
 dnf5 install -y $temp_dir/fx_cast_bridge.rpm
 
