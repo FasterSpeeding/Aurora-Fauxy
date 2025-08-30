@@ -11,11 +11,12 @@ fi
 
 # Setup fx_cast bridge
 temp_dir=$(mktemp -d)
+pushd "$temp_dir"
 
-wget https://github.com/hensm/fx_cast/releases/download/v$FX_CAST_VERSION/fx_cast_bridge-$FX_CAST_VERSION-$arch.rpm -O $temp_dir/fx_cast_bridge.rpm
+wget https://github.com/hensm/fx_cast/releases/download/v$FX_CAST_VERSION/fx_cast_bridge-$FX_CAST_VERSION-$arch.rpm -O ./fx_cast_bridge.rpm
+dnf5 install -y ./fx_cast_bridge.rpm
 
-dnf5 install -y $temp_dir/fx_cast_bridge.rpm
-
+popd
 rm -rvf "$temp_dir"
 
 useradd --system fx_cast
