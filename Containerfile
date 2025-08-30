@@ -5,7 +5,7 @@ RUN --mount=type=bind,source=/,target=/ctx,readonly \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
     bash /ctx/build.bash && \
-    dnf5 clean --all && \
+    dnf5 clean all && \
     ostree container commit
 
 RUN bootc container lint

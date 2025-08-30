@@ -1,7 +1,9 @@
+set -eu
+
 # Setup fx_cast bridge
 temp_dir=$(mktemp -d)
 
-wget https://github.com/hensm/fx_cast/releases/download/v0.3.0/fx_cast_bridge-0.3.0-x64.rpm -o $temp_dir/fx_cast_bridge.rpm
+wget https://github.com/hensm/fx_cast/releases/download/v0.3.0/fx_cast_bridge-0.3.0-x64.rpm -O $temp_dir/fx_cast_bridge.rpm
 
 dnf5 install -y $temp_dir/fx_cast_bridge.rpm
 
