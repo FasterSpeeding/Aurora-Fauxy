@@ -12,7 +12,7 @@ templating = ["Jinja2>=3.1.2"]
 default_sessions = ["verify-markup", "spell-check"]
 top_level_targets = []
 
-[tool.piped.github_actions.docker-publish]
+[tool.piped.github_actions.build_containerfile]
 [tool.piped.github_actions.freeze_for_pr]
 [tool.piped.github_actions.resync_piped]
 [tool.piped.github_actions.update_licence]
