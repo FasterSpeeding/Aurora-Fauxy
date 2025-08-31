@@ -4,7 +4,9 @@ RUN --mount=type=bind,source=/,target=/ctx,readonly \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
-    bash /ctx/build.bash && \
+    pushd /ctx && \
+    bash ./build.bash && \
+    popd && \
     dnf5 clean all && \
     ostree container commit
 
