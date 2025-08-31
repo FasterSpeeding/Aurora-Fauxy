@@ -1,4 +1,4 @@
-FROM ghcr.io/ublue-os/aurora-dx:stable@sha256:2373c34c9ca2f689543e504f39704ed9b9ac68552599200cd5fd7b567369fdc5 
+FROM ghcr.io/ublue-os/aurora-dx:stable@sha256:031224912459db7247062d05c536b3c307e0bcee98dde4f36b9dd06a119cd45d 
 
 RUN --mount=type=bind,source=/,target=/ctx,readonly \
     --mount=type=cache,dst=/var/cache \
