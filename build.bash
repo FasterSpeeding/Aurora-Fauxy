@@ -18,7 +18,6 @@ mv /opt /opt2
 ln -s /usr/etc/opt /opt
 
 wget https://github.com/hensm/fx_cast/releases/download/v$FX_CAST_VERSION/fx_cast_bridge-$FX_CAST_VERSION-$arch.rpm -O ./fx_cast_bridge.rpm
-mkdir /var/opt
 dnf5 install -y ./fx_cast_bridge.rpm
 
 popd
