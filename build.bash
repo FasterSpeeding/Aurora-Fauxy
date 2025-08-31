@@ -13,9 +13,9 @@ fi
 temp_dir=$(mktemp -d)
 pushd "$temp_dir"
 
-# Temporarily alias /opt to /usr/etc/opt instead of /var/opt which doesn't exist yet.
+# Temporarily alias /opt to /usr/sbin instead of /var/opt which doesn't exist yet.
 mv /opt /opt2
-ln -s /usr/etc/opt /opt
+ln -s /usr/sbin /opt
 
 wget https://github.com/hensm/fx_cast/releases/download/v$FX_CAST_VERSION/fx_cast_bridge-$FX_CAST_VERSION-$arch.rpm -O ./fx_cast_bridge.rpm
 dnf5 install -y ./fx_cast_bridge.rpm
