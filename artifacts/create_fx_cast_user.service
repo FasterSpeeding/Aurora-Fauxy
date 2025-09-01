@@ -1,1 +1,10 @@
+[Unit]
+Description=create fx_cast user
 
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=useradd --system fx_cast
+
+[Install]
+WantedBy=multi-user.target
