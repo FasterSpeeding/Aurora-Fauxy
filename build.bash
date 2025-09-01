@@ -29,6 +29,7 @@ mv /opt2 /opt
 
 useradd --system fx_cast
 cp ./artifacts/fx_cast.service /etc/systemd/system/fx_cast.service
+systemctl enable create_fx_cast_user
 systemctl enable fx_cast
 
 # Setup Waydroid
