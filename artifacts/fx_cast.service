@@ -3,6 +3,7 @@ Description=fx_cast daemon
 
 [Service]
 User=fx_cast
+ExecStartPre=useradd --system fx_cast
 ExecStart=/usr/sbin/fx_cast/fx_cast_bridge -d
 Restart=always
 KillSignal=SIGKILL
