@@ -27,8 +27,7 @@ rm -rvf "$temp_dir"
 rm /opt
 mv /opt2 /opt
 
-useradd --system fx_cast
-cp ./artifacts/fx_cast.service /etc/systemd/system/fx_cast.service
+cp ./artifacts/systemd_services/* /etc/systemd/system/
 systemctl enable create_fx_cast_user
 systemctl enable fx_cast
 
