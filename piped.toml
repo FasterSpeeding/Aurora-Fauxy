@@ -1,0 +1,6 @@
+default_sessions = ["verify-markup", "spell-check"]
+top_level_targets = []
+
+[github_actions.build_container]
+[github_actions.resync_piped]
+[github_actions.update_licence]
