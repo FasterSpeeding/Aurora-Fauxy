@@ -25,4 +25,4 @@ jobs:
     secrets: inherit
     with:
       architectures: '[{\"os\":\"ubuntu-24.04\",\"architecture\":\"amd64\"}]'
-            maximise-space: true
+      maximise-space: true
