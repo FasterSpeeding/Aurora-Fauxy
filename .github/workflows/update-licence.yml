@@ -8,6 +8,4 @@ on:
 jobs:
   update-licence:
     uses: FasterSpeeding/Piped/.github/workflows/update-licence.yml@e222eef82fb273c3c8539a7988016df2b7ae235a
-    with:
-      config-path: .github/labeler.yml
     secrets: inherit
