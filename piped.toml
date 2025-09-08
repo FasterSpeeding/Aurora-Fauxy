@@ -1,0 +1,2 @@
+default_sessions = ["verify-markup", "spell-check"]
+top_level_targets = []
