@@ -37,8 +37,8 @@ dnf5 install -y waydroid
 
 # Setup mise
 
-dnf copr enable jdxcode/mise
-dnf install mise
+dnf copr enable jdxcode/mise -y
+dnf install mise -y
 
 mkdir --parents /etc/mise && \
 cat /artifacts/mise.toml >> /etc/mise/config.toml && \
