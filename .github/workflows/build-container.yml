@@ -25,5 +25,5 @@ jobs:
     secrets: inherit
     with:
       architectures: '[{\"os\":\"ubuntu-24.04\",\"architecture\":\"amd64\"}]'
-      compression-level: '3'
+      compression-level: '1'
       maximise-space: true
