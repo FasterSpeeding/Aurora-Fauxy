@@ -45,5 +45,5 @@ cat /artifacts/mise.toml >> /etc/mise/config.toml && \
 
 # Configure environment
 
-cp /config/justfile /etc/fauxy.justfile
-cat /config/general.bashrc >> /etc/bashrc
+cp /artifacts/justfile /etc/fauxy.justfile
+cat /artifacts/general.bashrc >> /etc/bashrc
