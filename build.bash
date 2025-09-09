@@ -34,3 +34,16 @@ systemctl enable fx_cast
 # Setup Waydroid
 
 dnf5 install -y waydroid
+
+# Setup mise
+
+dnf copr enable jdxcode/mise
+dnf install mise
+
+mkdir --parents /etc/mise && \
+cat /artifacts/mise.toml >> /etc/mise/config.toml && \
+
+# Configure environment
+
+cp /config/justfile /etc/fauxy.justfile
+cat /config/general.bashrc >> /etc/bashrc

@@ -1,0 +1,13 @@
+update:
+    #!/usr/bin/bash
+    ujust update
+    misa upgrade
+
+install-defaults:
+    #!/usr/bin/bash
+    ujust install-gaming-flatpaks
+    ujust install-incus
+    ujust install-opentabletdriver
+    ujust install-fonts
+    ujust install-k8s-dev-tools
+    # TODO: doesn't work without devmode right now
