@@ -1,13 +1,17 @@
+set shell := ["bash", "-uc"]
+
 update:
-    #!/usr/bin/bash
     ujust update
     misa upgrade
+    # Update drivers
+    fwupdmgr refresh --force
+    fwupdmgr get-updates
+    fwupdmgr update
 
 install-defaults:
-    #!/usr/bin/bash
+    mise install
     ujust install-gaming-flatpaks
     ujust install-incus
     ujust install-opentabletdriver
     ujust install-fonts
     ujust install-k8s-dev-tools
-    # TODO: doesn't work without devmode right now

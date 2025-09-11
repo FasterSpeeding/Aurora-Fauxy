@@ -5,9 +5,5 @@ function startdev() {
   devpod up --git-clone-recursive-submodules --fallback-image "$base" "$target" "$@"
 }
 
-function jjust() {
-  just --justfile /etc/fauxy.justfile "${@}"
-}
-
 eval "$(mise activate bash)"
 
