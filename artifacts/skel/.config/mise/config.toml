@@ -6,7 +6,7 @@ go = "1.25"
 python = "3"
 rust = { version = "1.89.0", components = "rustc,cargo" }
 # CLI tools
-"go:github.com/schollz/croc/v10" = "v10.2.2"
+"go:github.com/schollz/croc/v10" = "v10.2.4"
 git-lfs = "3.7.0"
 uv = "0.8"
 just = "1.42.4"
