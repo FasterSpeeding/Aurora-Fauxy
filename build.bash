@@ -27,7 +27,7 @@ rm -rvf "$temp_dir"
 rm /opt
 mv /opt2 /opt
 
-rsync -rtv ./artifacts/systemd/system /etc/systemd/system/
+rsync -rtv ./artifacts/systemd/system /etc/systemd/system
 systemctl enable create_fx_cast_user
 systemctl enable fx_cast
 
