@@ -44,4 +44,4 @@ mkdir --parents /etc/mise
 
 # Copy reference user config
 
-cp -rv /etc/skel/* /etc/skel
+cp -rv ./artifacts/skel/* /etc/skel
