@@ -27,10 +27,21 @@ rm -rvf "$temp_dir"
 rm /opt
 mv /opt2 /opt
 
-cp ./artifacts/systemd_services/* /etc/systemd/system/
+rsync -rtv ./artifacts/systemd/system /etc/systemd
 systemctl enable create_fx_cast_user
 systemctl enable fx_cast
 
 # Setup Waydroid
 
 dnf5 install -y waydroid
+
+# Setup mise
+
+dnf copr enable jdxcode/mise -y
+dnf install mise -y
+
+mkdir --parents /etc/mise
+
+# Copy reference user config
+
+rsync -rtv ./artifacts/skel /etc/skel

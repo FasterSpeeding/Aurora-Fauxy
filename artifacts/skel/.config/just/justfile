@@ -1,0 +1,26 @@
+#!/usr/bin/env -S just --justfile
+
+# FILE SYNCED from https://github.com/FasterSpeeding/Aurora-Fauxy
+
+set shell := ["bash", "-o", "errexit", "-uc"]
+
+# Install the default applications and libraries
+install-defaults:
+    mise install
+    ujust install-gaming-flatpaks
+    ujust install-incus
+    ujust install-opentabletdriver
+    ujust install-fonts
+    ujust install-k8s-dev-tools
+
+# Sync global user configuration
+sync-user-config:
+    rsync -avh /etc/skel/* ~/
+
+# Update the OS and installed dependencies.
+update:
+    ujust update
+    misa upgrade
+    fwupdmgr refresh --force
+    fwupdmgr get-updates
+    fwupdmgr update
