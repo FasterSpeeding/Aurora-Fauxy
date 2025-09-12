@@ -2,6 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["github>FasterSpeeding/Piped//config/renovate.json"],
   "mise": {
-    "managerFilePatterns": ["/^artifacts/skel/\\.config/mise/config.yaml$/"]
+    "managerFilePatterns": ["/^artifacts/skel/\\.config/mise/config\\.yaml$/"]
   }
 }

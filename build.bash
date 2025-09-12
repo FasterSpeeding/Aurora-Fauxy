@@ -41,9 +41,7 @@ dnf copr enable jdxcode/mise -y
 dnf install mise -y
 
 mkdir --parents /etc/mise
-cp ./artifacts/mise.toml /etc/mise/config.toml
 
-# Configure environment
+# Copy reference user config
 
-cp ./artifacts/justfile /etc/fauxy.justfile
-cat ./artifacts/general.bashrc >> /etc/bashrc
+cp -rv /etc/skel/* /etc/skel
