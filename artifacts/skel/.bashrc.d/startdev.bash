@@ -1,4 +1,5 @@
 # FILE SYNCED from https://github.com/FasterSpeeding/Aurora-Fauxy
+
 function startdev() {
   local base=ghcr.io/fasterspeeding/devcontainer:master
   local target=${1?Pass the container as the first argument}

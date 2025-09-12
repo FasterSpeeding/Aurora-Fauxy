@@ -1,6 +1,7 @@
 #!/usr/bin/env -S just --justfile
 
 # FILE SYNCED from https://github.com/FasterSpeeding/Aurora-Fauxy
+
 set shell := ["bash", "-o", "errexit", "-uc"]
 
 # Install the default applications and libraries
