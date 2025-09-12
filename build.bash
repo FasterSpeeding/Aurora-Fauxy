@@ -27,7 +27,7 @@ rm -rvf "$temp_dir"
 rm /opt
 mv /opt2 /opt
 
-cp ./artifacts/systemd_services/* /etc/systemd/system/
+cp /artifacts/systemd_services/* /etc/systemd/system/
 systemctl enable create_fx_cast_user
 systemctl enable fx_cast
 
@@ -44,4 +44,4 @@ mkdir --parents /etc/mise
 
 # Copy reference user config
 
-cp -rv ./artifacts/skel/* /etc/skel
+cp -rv /artifacts/skel/* /etc/skel
