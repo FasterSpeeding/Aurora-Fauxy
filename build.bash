@@ -41,7 +41,6 @@ dnf copr enable jdxcode/mise -y
 dnf install mise -y
 
 mkdir --parents /etc/mise
-cp ./artifacts/mise.lock /etc/mise/config.lock
 cp ./artifacts/mise.toml /etc/mise/config.toml
 
 # Configure environment
