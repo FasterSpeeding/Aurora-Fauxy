@@ -4,7 +4,7 @@
 # Languages
 go = "1.25"
 python = "3"
-rust = { version = "1.89.0", components = "rustc,cargo" }
+rust = { version = "1.90.0", components = "rustc,cargo" }
 # CLI tools
 "go:github.com/schollz/croc/v10" = "v10.2.4"
 git-lfs = "3.7.0"
