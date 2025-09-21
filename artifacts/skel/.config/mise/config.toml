@@ -9,6 +9,7 @@ rust = { version = "1.90.0", components = "rustc,cargo" }
 "go:github.com/schollz/croc/v10" = "v10.2.5"
 flux2 = "2.6.4"
 git-lfs = "3.7.0"
+helm = "3.19.0"
 uv = "0.8"
 just = "1.42.4"
 opentofu = "1.10.6"
