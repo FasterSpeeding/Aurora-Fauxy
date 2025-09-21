@@ -11,6 +11,7 @@ flux = "2.6.4"
 git-lfs = "3.7.0"
 uv = "0.8"
 just = "1.42.4"
+kubeseal = "0.32.2"
 opentofu = "1.10.6"
 
 [settings]
