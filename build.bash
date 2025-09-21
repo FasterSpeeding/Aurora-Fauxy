@@ -45,11 +45,3 @@ mkdir --parents /etc/mise
 # Copy reference user config
 
 rsync -rtv ./artifacts/skel/ /etc/skel/
-
-# Set vi as global editor
-
-{
-  echo
-  echo "EDITOR=$(command -v vi)"
-} > /etc/environment
-
