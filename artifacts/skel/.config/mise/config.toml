@@ -10,6 +10,7 @@ rust = { version = "1.90.0", components = "rustc,cargo" }
 flux2 = "2.6.4"
 git-lfs = "3.7.0"
 helm = "3.19.0"
+kubeseal = "0.32.2"
 uv = "0.8"
 just = "1.42.4"
 kubeseal = "0.32.2"
