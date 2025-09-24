@@ -3,25 +3,35 @@
 # File synced from https://github.com/FasterSpeeding/Aurora-Fauxy
 # Changes will not be persisted
 
-set shell := ["bash", "-o", "errexit", "-uc"]
+set unstable := true
+set shell := ["bash", "-eu", "-c"]
+set script-interpreter := ["bash", "-eu"]
+
+export JUST_TASKS_VERBOSE := env('JUST_TASKS_VERBOSE', '')
+
+# Internal function used for executing bash script tasks
+[script]
+execute-bash-script script-name *FLAGS:
+    path="{{ source_directory() }}/bash_scripts/{{ script-name }}.bash"
+
+    if [[ -n "$JUST_TASKS_VERBOSE" ]]
+    then
+        echo "Execution bash script at $path"
+    fi
+
+    bash -eu "$path" {{ FLAGS }}
 
 # Install the default applications and libraries
+[script]
 install-defaults:
-    mise install
-    ujust install-gaming-flatpaks
-    ujust install-incus
-    ujust install-opentabletdriver
-    ujust install-fonts
-    ujust install-k8s-dev-tools
+    execute-bash-script install_defaults
 
-# Sync global user configuration
-sync-user-config:
-    rsync -avh /etc/skel/* ~/
+# Sync the global user configuration symlinks
+[script]
+sync-config-symlinks:
+    execute-bash-script sync_config_symlinks
 
 # Update the OS and installed dependencies.
+[script]
 update:
-    ujust update
-    misa upgrade
-    fwupdmgr refresh --force
-    fwupdmgr get-updates
-    fwupdmgr update
+    execute-bash-script update
