@@ -1,6 +1,6 @@
 set -ouex pipefail
 
-source /etc/skel/env.bash
+source ./artifacts/skel/env.bash
 
 tracked_symlinks='{"links":[]}'
 arch=$(uname -m)
