@@ -1,6 +1,7 @@
 #!/usr/bin/env -S just --justfile
 
-# FILE SYNCED from https://github.com/FasterSpeeding/Aurora-Fauxy
+# File synced from https://github.com/FasterSpeeding/Aurora-Fauxy
+# Changes will not be persisted
 
 set shell := ["bash", "-o", "errexit", "-uc"]
 

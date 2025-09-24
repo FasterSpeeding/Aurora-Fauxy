@@ -1,3 +1,5 @@
 # File synced from https://github.com/FasterSpeeding/Aurora-Fauxy
 # Changes will not be persisted
-eval "$(mise activate bash)"
+
+# Set vi as global editor
+export EDITOR="$(command -v vi)"
