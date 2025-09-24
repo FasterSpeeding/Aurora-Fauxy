@@ -20,7 +20,7 @@ function sync_and_symlink() {
             jq -c \
             --arg abs "$absolute" \
             --arg sym "$symlink" \
-            '.links += {"absolute":$abs,"symlink":$sym}')
+            '.links += [{"absolute":$abs,"symlink":$sym}]')
 
         ln -s "$absolute" "$symlink"
     done < <(find "$source_dir" -type f -printf "%P\0")
