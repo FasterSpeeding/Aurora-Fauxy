@@ -50,7 +50,7 @@ rm -rvf "$temp_dir"
 rm /opt
 mv /opt2 /opt
 
-sync_and_symlink ./artifacts/systemd/ /usr/lib/systemd/ /etc/systemd/
+rsync -rtv ./artifacts/systemd/ /etc/systemd/
 
 systemctl enable create_fx_cast_user
 systemctl enable fx_cast
