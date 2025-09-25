@@ -5,17 +5,14 @@ source ./artifacts/skel/.bashrc.d/env.bash
 tracked_symlinks='{"links":[]}'
 arch=$(uname -m)
 
-function sync_and_symlink() {
+function symlink() {
     source_dir=$1
     target_dir=$2
-    sym_dir=$3
-
-    rsync -rtv "$source_dir" "$target_dir"
 
     while read -r -d $'\0' path
     do
-        absolute=$(realpath "$target_dir/$path")
-        symlink="$sym_dir/$path"
+        absolute=$(realpath "$source_dir/$path")
+        symlink="$target_dir/$path"
         tracked_symlinks=$(echo "$tracked_symlinks" | 
             jq -c \
             --arg abs "$absolute" \
@@ -31,6 +28,8 @@ if [[ "$arch" == "aarch64" ]]; then
 elif [[ "$arch" == "x86_64" ]]; then
     arch="x64"
 fi
+
+ls /usr/
 
 # Setup fx_cast bridge
 temp_dir=$(mktemp -d)
@@ -68,5 +67,7 @@ mkdir --parents /etc/mise
 
 # Copy reference user config
 
-sync_and_symlink ./artifacts/skel/ /usr/etc/aurora-skel/ /etc/skel/
+rsync -rtv ./artifacts/ /usr/aurora/
+symlink /usr/aurora/skel/ /etc/skel/
+
 echo "$tracked_symlinks" >> "$SYMLINK_TRACKER"
