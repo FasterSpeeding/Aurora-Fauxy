@@ -1,13 +1,61 @@
 set -ouex pipefail
 
-FX_CAST_VERSION="0.3.0"
+source ./artifacts/skel/.bashrc.d/env.bash
+
+tracked_symlinks='{"dirs":[],"links":[]}'
 arch=$(uname -m)
 
 if [[ "$arch" == "aarch64" ]]; then
     arch="arm64"
 elif [[ "$arch" == "x86_64" ]]; then
     arch="x64"
+else
+    echo "Unknown arch: $arch"
+    exit 1
 fi
+
+# Recursively create tracked absolute symbolic links between two directories
+function symlink() {
+    source_dir=$1
+    target_dir=$2
+
+    find "$source_dir/" -type d -printf "%P\0" | xargs -0 -I {} mkdir -p $target_dir/{}
+    while read -r -d $'\0' rel_path
+    do
+        source_path="$source_dir/$rel_path"
+        target_path="$target_dir/$rel_path"
+
+        if [[ -d "$source_path" ]]
+        then
+            tracked_symlinks=$(echo "$tracked_symlinks" | 
+                jq -c --arg path "$target_path" '.dirs += [$path]')
+
+            mkdir -vp "$target_path"
+        elif [[ -f "$source_path" ]]
+        then
+            absolute=$(realpath "$source_path")
+            tracked_symlinks=$(echo "$tracked_symlinks" | 
+                jq -c \
+                --arg abs "$absolute" \
+                --arg sym "$target_path" \
+                '.links += [{"absolute":$abs,"symlink":$sym}]')
+
+            ln -vs "$absolute" "$target_path"
+        else
+            echo "Ignoring path $source_path"
+        fi
+    done < <(find "$source_dir/" -printf "%P\0")
+}
+
+function systemd_enable() {
+    systemctl enable "$AURORA_ARTIFACTS/systemd/system/$1.service"
+}
+
+# Copy artifacts and symlink reference user configs
+
+rsync -rtv ./artifacts/ "$AURORA_ARTIFACTS"
+
+symlink "$AURORA_ARTIFACTS/skel" /etc/skel
 
 # Setup fx_cast bridge
 temp_dir=$(mktemp -d)
@@ -27,9 +75,8 @@ rm -rvf "$temp_dir"
 rm /opt
 mv /opt2 /opt
 
-rsync -rtv ./artifacts/systemd/ /etc/systemd/
-systemctl enable create_fx_cast_user
-systemctl enable fx_cast
+systemd_enable create_fx_cast_user
+systemd_enable fx_cast
 
 # Setup Waydroid
 
@@ -40,8 +87,6 @@ dnf5 install -y waydroid
 dnf copr enable jdxcode/mise -y
 dnf install mise -y
 
-mkdir --parents /etc/mise
+# Save tracked symlinks
 
-# Copy reference user config
-
-rsync -rtv ./artifacts/skel/ /etc/skel/
+echo "$tracked_symlinks" >> "$SYMLINK_TRACKER"
