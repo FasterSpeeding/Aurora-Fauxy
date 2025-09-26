@@ -13,5 +13,5 @@ then
         then
             . "$path"
         fi
-    done < <(find "$bash_artifacts/" -printf "%P\0")
+    done < <(find "$bash_artifacts/" -print0)
 fi
