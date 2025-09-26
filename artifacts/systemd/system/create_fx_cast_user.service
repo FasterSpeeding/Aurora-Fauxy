@@ -7,7 +7,7 @@ Description=create fx_cast user
 Type=oneshot
 RemainAfterExit=yes
 # This is allowed to fail, indicates the user already exists
-ExecStart=useradd --system fx_cast || true
+ExecStart=-useradd --system fx_cast || true
 Before=fx_cast.service
 
 [Install]
