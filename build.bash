@@ -10,7 +10,7 @@ if [[ "$arch" == "aarch64" ]]; then
 elif [[ "$arch" == "x86_64" ]]; then
     arch="x64"
 else
-    echo "Unknown arch $arch"
+    echo "Unknown arch: $arch"
     exit 1
 fi
 
@@ -48,7 +48,7 @@ function symlink() {
 }
 
 function systemd_enable() {
-    systemctl enable "$AURORA_ARTIFACTS/systemd/system/create_fx_cast_user"
+    systemctl enable "$AURORA_ARTIFACTS/systemd/system/$1.service"
 }
 
 # Copy artifacts and symlink reference user configs
@@ -86,8 +86,6 @@ dnf5 install -y waydroid
 
 dnf copr enable jdxcode/mise -y
 dnf install mise -y
-
-mkdir --parents /etc/mise
 
 # Save tracked symlinks
 
