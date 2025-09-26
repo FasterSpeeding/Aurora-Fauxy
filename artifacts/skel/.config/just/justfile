@@ -24,14 +24,14 @@ execute-bash-script script-name *FLAGS:
 # Install the default applications and libraries
 [script]
 install-defaults:
-    execute-bash-script install_defaults
+    just execute-bash-script install_defaults
 
 # Sync the global user configuration symlinks
 [script]
 sync-config-symlinks:
-    execute-bash-script sync_config_symlinks
+    just execute-bash-script sync_config_symlinks
 
 # Update the OS and installed dependencies.
 [script]
 update:
-    execute-bash-script update
+    just execute-bash-script update
