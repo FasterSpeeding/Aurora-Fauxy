@@ -9,17 +9,29 @@ function symlink() {
     source_dir=$1
     target_dir=$2
 
-    while read -r -d $'\0' path
+    find "$source_dir/" -type d -printf "%P\0" | xargs -0 -I {} mkdir -p $target_dir/{}
+    while read -r -d $'\0' rel_path
     do
-        absolute=$(realpath "$source_dir/$path")
-        symlink="$target_dir/$path"
-        tracked_symlinks=$(echo "$tracked_symlinks" | 
-            jq -c \
-            --arg abs "$absolute" \
-            --arg sym "$symlink" \
-            '.links += [{"absolute":$abs,"symlink":$sym}]')
+        source_path="$source_dir/$rel_path"
+        target_path="$target_dir/$rel_path"
 
-        ln -s "$absolute" "$symlink"
+        if [[ -d "$source_path" ]]
+        then
+            mkdir -vp "$target_path"
+        elif [[ -f "$source_path" ]]
+        then
+            absolute=$(realpath "$source_path")
+            tracked_symlinks=$(echo "$tracked_symlinks" | 
+                jq -c \
+                --arg abs "$absolute" \
+                --arg sym "$target_path" \
+                '.links += [{"absolute":$abs,"symlink":$sym}]')
+
+            ln -vs "$absolute" "$target_path"
+        else
+        then
+            echo "Ignoring path $source_path"
+        fi
     done < <(find "$source_dir/" -type f -printf "%P\0")
 }
 
@@ -28,9 +40,6 @@ if [[ "$arch" == "aarch64" ]]; then
 elif [[ "$arch" == "x86_64" ]]; then
     arch="x64"
 fi
-
-ls /etc/
-ls /usr/
 
 # Setup fx_cast bridge
 temp_dir=$(mktemp -d)
