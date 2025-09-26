@@ -44,7 +44,7 @@ function symlink() {
         else
             echo "Ignoring path $source_path"
         fi
-    done < <(find "$source_dir/" -type f -printf "%P\0")
+    done < <(find "$source_dir/" -printf "%P\0")
 }
 
 function systemd_enable() {
