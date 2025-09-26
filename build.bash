@@ -55,7 +55,7 @@ function systemd_enable() {
 
 rsync -rtv ./artifacts/ "$AURORA_ARTIFACTS"
 
-symlink "$AURORA_ARTIFACTS/skel" /usr/etc/skel
+symlink "$AURORA_ARTIFACTS/skel" /etc/skel
 
 # Setup fx_cast bridge
 temp_dir=$(mktemp -d)
