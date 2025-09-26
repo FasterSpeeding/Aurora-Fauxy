@@ -20,7 +20,7 @@ function symlink() {
             '.links += [{"absolute":$abs,"symlink":$sym}]')
 
         ln -s "$absolute" "$symlink"
-    done < <(find "$source_dir" -type f -printf "%P\0")
+    done < <(find "$source_dir/" -type f -printf "%P\0")
 }
 
 if [[ "$arch" == "aarch64" ]]; then
@@ -69,6 +69,6 @@ mkdir --parents /etc/mise
 # Copy reference user config
 
 rsync -rtv ./artifacts/ /usr/aurora/
-symlink /usr/aurora/skel/ /etc/skel/
+symlink /usr/aurora/skel /etc/skel
 
 echo "$tracked_symlinks" >> "$SYMLINK_TRACKER"
