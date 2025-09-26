@@ -2,9 +2,19 @@ set -ouex pipefail
 
 source ./artifacts/skel/.bashrc.d/env.bash
 
-tracked_symlinks='{"links":[]}'
+tracked_symlinks='{"dirs":[],"links":[]}'
 arch=$(uname -m)
 
+if [[ "$arch" == "aarch64" ]]; then
+    arch="arm64"
+elif [[ "$arch" == "x86_64" ]]; then
+    arch="x64"
+else
+    echo "Unknown arch $arch"
+    exit 1
+fi
+
+# Recursively create tracked absolute symbolic links between two directories
 function symlink() {
     source_dir=$1
     target_dir=$2
@@ -17,6 +27,9 @@ function symlink() {
 
         if [[ -d "$source_path" ]]
         then
+            tracked_symlinks=$(echo "$tracked_symlinks" | 
+                jq -c --arg path "$target_path" '.dirs += [$path]')
+
             mkdir -vp "$target_path"
         elif [[ -f "$source_path" ]]
         then
@@ -29,17 +42,20 @@ function symlink() {
 
             ln -vs "$absolute" "$target_path"
         else
-        then
             echo "Ignoring path $source_path"
         fi
     done < <(find "$source_dir/" -type f -printf "%P\0")
 }
 
-if [[ "$arch" == "aarch64" ]]; then
-    arch="arm64"
-elif [[ "$arch" == "x86_64" ]]; then
-    arch="x64"
-fi
+function systemd_enable() {
+    systemctl enable "$AURORA_ARTIFACTS/systemd/system/create_fx_cast_user"
+}
+
+# Copy artifacts and symlink reference user configs
+
+rsync -rtv ./artifacts/ "$AURORA_ARTIFACTS"
+
+symlink "$AURORA_ARTIFACTS/skel" /usr/etc/skel
 
 # Setup fx_cast bridge
 temp_dir=$(mktemp -d)
@@ -59,10 +75,8 @@ rm -rvf "$temp_dir"
 rm /opt
 mv /opt2 /opt
 
-rsync -rtv ./artifacts/systemd/ /etc/systemd/
-
-systemctl enable create_fx_cast_user
-systemctl enable fx_cast
+systemd_enable create_fx_cast_user
+systemd_enable fx_cast
 
 # Setup Waydroid
 
@@ -75,9 +89,6 @@ dnf install mise -y
 
 mkdir --parents /etc/mise
 
-# Copy reference user config
-
-rsync -rtv ./artifacts/ /usr/aurora/
-symlink /usr/aurora/skel /etc/skel
+# Save tracked symlinks
 
 echo "$tracked_symlinks" >> "$SYMLINK_TRACKER"
