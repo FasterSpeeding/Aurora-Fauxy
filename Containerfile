@@ -8,8 +8,9 @@ RUN --mount=type=bind,source=/,target=/ctx,readonly \
     --mount=type=tmpfs,dst=/tmp \
     pushd /ctx && \
     bash ./build.bash && \
-    popd && \
     dnf5 clean all && \
+    bash ./cleanup.bash && \ 
+    popd && \
     ostree container commit
 
-RUN bootc container lint
+RUN bootc container lint --fatal-warnings --no-truncate

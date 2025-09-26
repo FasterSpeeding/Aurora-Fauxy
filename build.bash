@@ -1,4 +1,4 @@
-set -ouex pipefail
+set -eux
 
 source ./artifacts/skel/.bashrc.d/env.bash
 
