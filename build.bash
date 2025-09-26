@@ -1,6 +1,6 @@
 set -eux
 
-source ./artifacts/skel/.bashrc.d/env.bash
+source ./artifacts/bashrc/env.bash
 
 tracked_symlinks='{"dirs":[],"links":[]}'
 arch=$(uname -m)
