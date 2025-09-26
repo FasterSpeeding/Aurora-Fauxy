@@ -9,6 +9,10 @@ set script-interpreter := ["bash", "-eu"]
 
 export JUST_TASKS_VERBOSE := env('JUST_TASKS_VERBOSE', '')
 
+# Default command
+default:
+    just --list
+
 # Internal function used for executing bash script tasks
 [script]
 execute-bash-script script-name *FLAGS:
