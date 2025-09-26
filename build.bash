@@ -29,6 +29,7 @@ elif [[ "$arch" == "x86_64" ]]; then
     arch="x64"
 fi
 
+ls /etc/
 ls /usr/
 
 # Setup fx_cast bridge
