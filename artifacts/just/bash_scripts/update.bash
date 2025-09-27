@@ -1,4 +1,4 @@
-misa upgrade
+mise upgrade
 ujust update
 fwupdmgr refresh --force
 fwupdmgr get-updates
