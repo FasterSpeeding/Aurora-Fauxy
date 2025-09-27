@@ -1,7 +1,7 @@
 # File synced from https://github.com/FasterSpeeding/Aurora-Fauxy
 # Changes will not be persisted
 
-AURORA_ARTIFACTS="${AURORA_ARTIFACTS:/usr/lib/aurora}"
+AURORA_ARTIFACTS="${AURORA_ARTIFACTS:-/usr/lib/aurora}"
 
 bash_artifacts="$AURORA_ARTIFACTS/bashrc"
 
