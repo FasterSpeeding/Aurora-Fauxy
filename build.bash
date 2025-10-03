@@ -1,4 +1,4 @@
-set -eux
+set -eu
 
 source ./artifacts/bashrc/env.bash
 
