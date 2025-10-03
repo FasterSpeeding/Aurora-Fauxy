@@ -1,4 +1,4 @@
-mise install
+mise install --yes
 ujust install-gaming-flatpaks
 ujust install-incus
 ujust install-opentabletdriver
