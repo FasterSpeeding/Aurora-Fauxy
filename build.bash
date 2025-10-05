@@ -14,13 +14,24 @@ else
     exit 1
 fi
 
+# Iterate over the relative pathes of files found in a directory (null delimited).
+function find_rel_paths() {
+    path="$1/"
+    shift
+    find "$path" -printf "%P\0" "$@"
+}
+
+# Read over null-deliminated input.
+function read0() {
+    read -r -d $'\0' "$@"
+}
+
 # Recursively create tracked absolute symbolic links between two directories
 function symlink() {
     source_dir=$1
     target_dir=$2
 
-    find "$source_dir/" -type d -printf "%P\0" | xargs -0 -I {} mkdir -p $target_dir/{}
-    while read -r -d $'\0' rel_path
+    while read0 rel_path
     do
         source_path="$source_dir/$rel_path"
         target_path="$target_dir/$rel_path"
@@ -44,7 +55,7 @@ function symlink() {
         else
             echo "Ignoring path $source_path"
         fi
-    done < <(find "$source_dir/" -printf "%P\0")
+    done < <(find_rel_paths "$source_dir")
 }
 
 function systemd_enable() {
@@ -86,6 +97,22 @@ dnf5 install -y waydroid
 
 dnf copr enable jdxcode/mise -y
 dnf install mise -y
+
+# Copy executables to /usr/bin and /usr/sbin
+
+function mark_executable() {
+    dir_name="$1"
+
+    while read0 rel_path
+    do
+        chmod -v +x "/usr/$dir_name/$rel_path"
+    done < <(find_rel_paths "$AURORA_ARTIFACTS/usr/$dir_name")
+}
+
+rsync -rtv "$AURORA_ARTIFACTS/usr/bin/" "/usr/bin/"
+mark_executable "bin"
+rsync -rtv "$AURORA_ARTIFACTS/usr/sbin/" "/usr/sbin/"
+mark_executable "sbin"
 
 # Save tracked symlinks
 
