@@ -17,7 +17,7 @@ fi
 # Iterate over the relative pathes of files found in a directory (null delimited).
 function find_rel_paths() {
     path="$1/"
-    shift
+    shift 1
     find "$path" -printf "%P\0" "$@"
 }
 
