@@ -111,8 +111,8 @@ function mark_executable() {
 
 rsync -rtv "$AURORA_ARTIFACTS/usr/bin/" "/usr/bin/"
 mark_executable "bin"
-rsync -rtv "$AURORA_ARTIFACTS/usr/sbin/" "/usr/sbin/"
-mark_executable "sbin"
+#rsync -rtv "$AURORA_ARTIFACTS/usr/sbin/" "/usr/sbin/"
+#mark_executable "sbin"
 
 # Save tracked symlinks
 
