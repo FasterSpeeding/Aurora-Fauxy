@@ -11,5 +11,5 @@ on:
 
 jobs:
   actionlint:
-    uses: FasterSpeeding/Piped/.github/workflows/lint-actions.yml@81c73169ae0f87dd0ea6eaf6caa75c97daad973b
+    uses: FasterSpeeding/Piped/.github/workflows/lint-actions.yml@910a84c7b5e626a490079b2d2c6b21dd2b7231b3
     secrets: inherit
