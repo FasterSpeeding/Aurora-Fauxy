@@ -6,6 +6,7 @@ go = "1.25"
 python = "3"
 rust = { version = "1.90.0", components = "rustc,cargo" }
 # CLI tools
+cargo-binstall = "1.15.6"
 "go:github.com/schollz/croc/v10" = "v10.2.5"
 flux2 = "2.7.0"
 git-lfs = "3.7.0"
