@@ -1,3 +1,4 @@
+mise install carton binstall --yes
 mise install --yes
 ujust install-gaming-flatpaks
 ujust install-incus
