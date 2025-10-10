@@ -14,6 +14,7 @@ helm = "3.19.0"
 uv = "0.8.23"
 just = "1.43.0"
 kubeseal = "0.32.2"
+minikube = "1.37.0"
 opentofu = "1.10.6"
 yt-dlp = "2025.09.26"
 
