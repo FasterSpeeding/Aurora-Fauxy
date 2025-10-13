@@ -1,4 +1,4 @@
-FROM ghcr.io/ublue-os/aurora-dx:stable@sha256:e927f46f871b26ca03f98d9fe81fbc5e90d0320d5261f39a33e565ea5bd062d7 
+FROM ghcr.io/ublue-os/aurora-dx:stable@sha256:a145f99e98841e7db374f4bac24992f8317459b5a4b3c91310b878bc2f2b185d 
 
 ENV FX_CAST_VERSION="0.3.0"
 
