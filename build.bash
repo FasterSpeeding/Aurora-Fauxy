@@ -89,14 +89,11 @@ mv /opt2 /opt
 systemd_enable create_fx_cast_user
 systemd_enable fx_cast
 
-# Setup Waydroid
+# DNF Install misc tooling
 
-dnf5 install -y waydroid
+dnf5 copr enable jdxcode/mise -y
 
-# Setup mise
-
-dnf copr enable jdxcode/mise -y
-dnf install mise -y
+dnf5 install -y mise screen waydroid
 
 # Copy executables to /usr/bin and /usr/sbin
 
