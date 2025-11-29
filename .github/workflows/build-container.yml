@@ -21,7 +21,7 @@ jobs:
       packages: write
       id-token: write
 
-    uses: FasterSpeeding/Piped/.github/workflows/build-container.yml@45ffb6bffc26d7abcae7a8f300f60c306cd706eb
+    uses: FasterSpeeding/Piped/.github/workflows/build-container.yml@76876e9e2f041385ed9caf39a02b3fdb706be8ec
     secrets: inherit
     with:
       architectures: '[{\"os\":\"ubuntu-24.04\",\"architecture\":\"amd64\"}]'
