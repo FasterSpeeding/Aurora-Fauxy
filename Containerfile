@@ -1,4 +1,4 @@
-FROM ghcr.io/ublue-os/aurora-dx-nvidia-open:stable@sha256:e98ba8f1e030b97c130077f4f97636c2921467dd99f8b7a879bb699eefb6ea20
+FROM ghcr.io/ublue-os/aurora-dx-nvidia-open:stable@sha256:cb868f1b527e2f9fec4777df1aa6fdeccc0e9fa063bdad80a9611d1815df7ad4
 
 ENV FX_CAST_VERSION="0.3.0"
 
