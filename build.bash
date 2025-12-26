@@ -93,7 +93,7 @@ systemd_enable fx_cast
 
 dnf5 copr enable jdxcode/mise -y
 
-dnf5 install -y mise screen waydroid
+dnf5 install -y mise screen waydroid zerotier-one
 
 # Copy executables to /usr/bin and /usr/sbin
 
