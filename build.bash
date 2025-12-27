@@ -96,8 +96,10 @@ dnf5 copr enable jdxcode/mise -y
 
 dnf5 install -y mise screen waydroid zerotier-one
 
-# Delete /var/ directory made by dnf5 install zerotier-one
+# Clear up non-build rubbish left by `dnf5 install zerotier-one`
 rm -rv /var/lib/zerotier-one
+groupdel zerotier-one
+passwd --delete zerotier-one
 
 # Copy executables to /usr/bin and /usr/sbin
 
