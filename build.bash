@@ -100,7 +100,6 @@ dnf5 install -y mise screen waydroid zerotier-one
 rm -rv /var/lib/zerotier-one
 passwd --delete zerotier-one
 userdel -r zerotier-one
-groupdel zerotier-one
 
 # Copy executables to /usr/bin and /usr/sbin
 
