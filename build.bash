@@ -67,6 +67,7 @@ function systemd_enable() {
 rsync -rtv ./artifacts/ "$AURORA_ARTIFACTS"
 
 symlink "$AURORA_ARTIFACTS/skel" /etc/skel
+symlink "$AURORA_ARTIFACTS/etc" /etc
 
 # Setup fx_cast bridge
 temp_dir=$(mktemp -d)
@@ -93,7 +94,12 @@ systemd_enable fx_cast
 
 dnf5 copr enable jdxcode/mise -y
 
-dnf5 install -y mise screen waydroid
+dnf5 install -y mise screen waydroid zerotier-one
+
+# Clear up non-build rubbish left by `dnf5 install zerotier-one`
+rm -rv /var/lib/zerotier-one
+passwd --delete zerotier-one
+userdel -r zerotier-one
 
 # Copy executables to /usr/bin and /usr/sbin
 
