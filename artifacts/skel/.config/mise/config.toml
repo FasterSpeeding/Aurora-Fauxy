@@ -15,7 +15,7 @@ uv = "0.9.21"
 just = "1.44.0"
 kubeseal = "0.32.2"
 minikube = "1.37.0"
-opentofu = "1.10.7"
+opentofu = "1.11.2"
 "pipx:yt-dlp" = "2025.11.12"
 
 [settings]
