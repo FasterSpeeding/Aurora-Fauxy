@@ -7,7 +7,7 @@ python = "3"
 rust = { version = "1.92.0", components = "rustc,cargo" }
 # CLI tools
 cargo-binstall = "1.15.6"
-"go:github.com/schollz/croc/v10" = "v10.2.7"
+"go:github.com/schollz/croc/v10" = "v10.3.1"
 flux2 = "2.7.5"
 git-lfs = "3.7.0"
 helm = "3.19.4"
