@@ -94,7 +94,7 @@ systemd_enable fx_cast
 
 dnf5 copr enable jdxcode/mise -y
 
-dnf5 install -y mise screen waydroid zerotier-one
+dnf5 install -y mangohud mise screen waydroid zerotier-one
 
 # Clear up non-build rubbish left by `dnf5 install zerotier-one`
 rm -rv /var/lib/zerotier-one
