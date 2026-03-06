@@ -2,7 +2,7 @@
 # Changes will not be persisted
 [tools]
 # Languages
-go = "1.25"
+go = "1.26.1"
 python = "3"
 rust = { version = "1.92.0", components = "rustc,cargo" }
 # CLI tools
