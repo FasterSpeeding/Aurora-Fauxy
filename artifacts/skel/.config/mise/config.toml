@@ -14,7 +14,7 @@ helm = "4.0.5"
 uv = "0.10.9"
 just = "1.46.0"
 kubeseal = "0.32.2"
-minikube = "1.37.0"
+minikube = "1.38.1"
 opentofu = "1.11.3"
 "pipx:yt-dlp" = "2026.2.21"
 
