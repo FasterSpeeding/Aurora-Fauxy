@@ -1,6 +1,6 @@
 set -eu
 
-source ./artifacts/bashrc/env.bash
+source ./artifacts/bashrc/1.env.bash
 
 tracked_symlinks='{"dirs":[],"links":[]}'
 arch=$(uname -m)
