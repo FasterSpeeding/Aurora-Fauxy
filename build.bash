@@ -90,11 +90,9 @@ mv /opt2 /opt
 systemd_enable create_fx_cast_user
 systemd_enable fx_cast
 
-# DNF Install misc tooling
+# DNF Installs
 
-dnf5 copr enable jdxcode/mise -y
-
-dnf5 install -y mangohud mise screen waydroid
+dnf5 install -y mangohud screen waydroid
 
 # Copy executables to /usr/bin and /usr/sbin
 
