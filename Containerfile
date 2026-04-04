@@ -8,7 +8,6 @@ RUN --mount=type=bind,source=/,target=/ctx,readonly \
     --mount=type=tmpfs,dst=/tmp \
     pushd /ctx && \
     bash ./build.bash && \
-    dnf5 clean all && \
     bash ./cleanup.bash && \ 
     popd && \
     ostree container commit
