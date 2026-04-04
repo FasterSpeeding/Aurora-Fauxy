@@ -92,7 +92,9 @@ systemd_enable fx_cast
 
 # DNF Installs
 
-dnf5 install -y mangohud screen waydroid
+dnf5 copr enable jdxcode/mise -y
+
+dnf5 install -y mangohud mise screen waydroid
 
 # Copy executables to /usr/bin and /usr/sbin
 
