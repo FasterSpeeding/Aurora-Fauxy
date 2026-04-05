@@ -9,12 +9,17 @@ _DIRS_TO_DELETE = [pathlib.Path("/var/lib/dnf"), pathlib.Path("/var/lib/waydroid
 
 
 def main() -> None:
+    print("Running cleanup tasks")
+
     for path in _DIRS_TO_DELETE:
         if path.is_dir():
             print(f"Removing directory {path!s}")
             shutil.rmtree(str(path))
 
-        elif path.exists():
+        elif not path.exists():
+            print(f"Skipping {path!s} directory cleanup, does not exist!")
+
+        else:
             message = f"Unexpected file/symlink found at {path!s}, expected a directory"
             raise exceptions.ExpectedError(message)
 
