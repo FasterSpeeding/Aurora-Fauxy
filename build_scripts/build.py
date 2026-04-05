@@ -34,8 +34,10 @@ def main() -> None:
 
     # Copy executables to /usr/bin and /usr/sbin
 
-    linking.copy_tree(environ.ARTIFACTS_PATH / "usr" / "bin", USR_PATH / "bin")
-    # linking.copy_tree(ARTIFACTS_PATH, "usr", "sbin", USR_PATH / "sbin")
+    linking.copy_tree(
+        environ.ARTIFACTS_PATH / "usr" / "bin", USR_PATH / "bin", merge=True
+    )
+    # linking.copy_tree(ARTIFACTS_PATH, "usr", "sbin", USR_PATH / "sbin", copy_tree=True)
 
     # Override bling.sh from Project bluefin's common config to fix bash-preexec and Atuin integration.
     print(f"Overriding {BLING_PATH} to fix bash-preexec and atuin")

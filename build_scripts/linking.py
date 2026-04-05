@@ -68,10 +68,13 @@ def _visit_folder(path: str, _: list[str], /) -> collections.Iterable[str]:
     return ()
 
 
-def copy_tree(source: pathlib.Path, target: pathlib.Path, /) -> None:
+def copy_tree(
+    source: pathlib.Path, target: pathlib.Path, /, *, merge: bool = False
+) -> None:
     shutil.copytree(
         str(source.absolute()),
         str(target.absolute()),
         copy_function=_copy,
         ignore=_visit_folder,
+        dirs_exist_ok=merge,
     )
