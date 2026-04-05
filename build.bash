@@ -112,6 +112,10 @@ mark_executable "bin"
 #rsync -rtv "$AURORA_ARTIFACTS/usr/sbin/" "/usr/sbin/"
 #mark_executable "sbin"
 
+# Override bling.sh from Project bluefin's common config to fix bash-preexec and Atuin integration.
+
+cp -f "$AURORA_ARTIFACTS/bling.sh" /usr/share/ublue-os/bling/bling.sh
+
 # Save tracked symlinks
 
 echo "$tracked_symlinks" >> "$SYMLINK_TRACKER"
