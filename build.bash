@@ -112,9 +112,7 @@ mark_executable "bin"
 
 # Override bling.sh from Project bluefin's common config to fix bash-preexec and Atuin integration.
 
-ls -la /usr/share/
-tree /usr/share/ublue-os/
-cp --update all "$AURORA_ARTIFACTS/bling.sh" /usr/share/ublue-os/bling/bling.sh
+cp -f "$AURORA_ARTIFACTS/bling.sh" /usr/share/ublue-os/bling/bling.sh
 
 # Save tracked symlinks
 
