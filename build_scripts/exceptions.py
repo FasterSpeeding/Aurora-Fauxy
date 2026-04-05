@@ -18,10 +18,13 @@ class ExpectedError(RuntimeError):
             print(error.message, file=sys.stderr)
             return True
 
-    @contextlib.contextmanager
     @classmethod
-    def catch(cls) -> collections.Iterator[None]:
-        with contextlib.ExitStack() as exit_stack:
-            exit_stack.push(cls._handle_exception)
+    def catch(cls) -> contextlib.AbstractContextManager[None]:
+        @contextlib.contextmanager
+        def context() -> collections.Iterator[None]:
+            with contextlib.ExitStack() as exit_stack:
+                exit_stack.push(cls._handle_exception)
 
-            yield
+                yield
+
+        return context()
