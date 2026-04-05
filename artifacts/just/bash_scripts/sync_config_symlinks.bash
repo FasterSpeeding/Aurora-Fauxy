@@ -1,11 +1,11 @@
-while read -r -d $'\0' absolute; read -r -d $'\0' symlink
+while read -r -d $'\0' symlinked_to; read -r -d $'\0' path
 do
-    if [[ "$symlink" == /etc/skel* ]]
+    if [[ "$path" == /etc/skel* ]]
     then
-      symlink="$HOME/${symlink#/etc/skel/}"
-      sym_dir=$(dirname "$symlink")
+      path="$HOME/${symlink#/etc/skel/}"
+      sym_dir=$(dirname "$path")
 
       mkdir -vp "$sym_dir"
-      ln -sfv "$absolute" "$symlink"
+      ln -sfv "$symlinked_to" "$path"
     fi
-done < <(jq -c --raw-output0 '.links[] | [.absolute, .symlink] | flatten | .[]' "$SYMLINK_TRACKER")
+done < <(jq -c --raw-output0 '.links[] | [.symlinked_to, .path] | flatten | .[]' "$SYMLINK_TRACKER")
