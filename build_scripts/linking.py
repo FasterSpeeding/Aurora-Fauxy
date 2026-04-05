@@ -2,8 +2,17 @@ import dataclasses
 import pathlib
 import shutil
 import json
+import typing
 from collections import abc as collections
 import environ
+
+
+class JSONEncoder(json.JSONEncoder):
+    def default(self, o: typing.Any) -> typing.Any:
+        if isinstance(o, pathlib.PurePath):
+            return str(o)
+
+        return super().default(o)
 
 
 @dataclasses.dataclass(frozen=True, kw_only=True, slots=True)
@@ -55,7 +64,7 @@ class SymLinker:
         data = dataclasses.asdict(self)
         environ.SYMLINK_TRACKER_PATH.unlink(missing_ok=True)
         with environ.SYMLINK_TRACKER_PATH.open("w") as file:
-            json.dump(data, file)
+            json.dump(data, file, cls=JSONEncoder)
 
 
 def _copy(source: str, target: str) -> None:
