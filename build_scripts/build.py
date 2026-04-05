@@ -20,7 +20,7 @@ def main() -> None:
     # Copy artifacts and symlink reference user configs
     linking.copy_tree(environ.BASE_DIR / "artifacts", environ.ARTIFACTS_PATH)
     sym_linker.link_tree(environ.ARTIFACTS_PATH / "skel", ETC_PATH / "skel")
-    sym_linker.link_tree(environ.ARTIFACTS_PATH / "etc", ETC_PATH)
+    # sym_linker.link_tree(environ.ARTIFACTS_PATH / "etc", ETC_PATH)
 
     # Install tooling.
 
