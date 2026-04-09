@@ -7,8 +7,8 @@ RUN --mount=type=bind,source=/,target=/ctx,readonly \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
     pushd /ctx && \
-    bash ./build.bash && \
-    bash ./cleanup.bash && \ 
+    bash ./build_scripts/call_python.bash build && \
+    bash ./build_scripts/call_python.bash cleanup && \
     popd && \
     ostree container commit
 
