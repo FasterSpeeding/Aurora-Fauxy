@@ -21,7 +21,7 @@ class FxArchs(str, enum.Enum):
 
 
 def install_fx_cast_bridge() -> None:
-    RPM_STORE_PATH.mkdir(exist_ok=True)
+    RPM_STORE_PATH.mkdir(exist_ok=True, parents=True)
 
     temp_opt = OPT_PATH.rename("/temp_opt")
 

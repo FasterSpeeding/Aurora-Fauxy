@@ -7,20 +7,15 @@ import cli_calls
 import fx_cast
 
 
-USR_PATH = pathlib.Path("/usr")
-ETC_PATH = pathlib.Path("/etc")
-BLING_PATH = USR_PATH / "share" / "ublue-os" / "bling" / "bling.sh"
+BLING_PATH = pathlib.Path("/usr") / "share" / "ublue-os" / "bling" / "bling.sh"
+SKEL_PATH = pathlib.Path("/etc") / "skel"
 
 
 def main() -> None:
-    sym_linker = linking.SymLinker()
-
     print("Running build tasks")
 
-    # Copy artifacts and symlink reference user configs
+    # Copy artifacts
     linking.copy_tree(environ.BASE_DIR / "artifacts", environ.ARTIFACTS_PATH)
-    sym_linker.link_tree(environ.ARTIFACTS_PATH / "skel", ETC_PATH / "skel")
-    # sym_linker.link_tree(environ.ARTIFACTS_PATH / "etc", ETC_PATH)
 
     # Install tooling.
 
@@ -32,20 +27,24 @@ def main() -> None:
         "dnf5", "install", "-y", "mangohud", "mise", "screen", "waydroid"
     )
 
-    # Copy executables to /usr/bin and /usr/sbin
-
-    linking.copy_tree(
-        environ.ARTIFACTS_PATH / "usr" / "bin", USR_PATH / "bin", merge=True
-    )
-    # linking.copy_tree(ARTIFACTS_PATH, "usr", "sbin", USR_PATH / "sbin", copy_tree=True)
-
     # Override bling.sh from Project bluefin's common config to fix bash-preexec and Atuin integration.
     print(f"Overriding {BLING_PATH} to fix bash-preexec and atuin")
     (environ.ARTIFACTS_PATH / "bling.sh").copy(BLING_PATH)
 
-    # Save tracked symlinks
-
-    sym_linker.save_to_tracker()
+    # Initialise dotfiles in the skeleton directory
+    # TODO: disable cache, check if source path is working properly
+    cli_calls.call_subprocess(
+        "mise",
+        "exec",
+        "chezmoi",
+        "--",
+        "chezmoi",
+        "init",
+        "--apply",
+        environ.DOTFILES_REPO,
+        "--destination",
+        str(SKEL_PATH),
+    )
 
 
 if __name__ == "__main__":

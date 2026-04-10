@@ -24,6 +24,8 @@ def main() -> None:
             raise exceptions.ExpectedError(message)
 
     cli_calls.call_subprocess("dnf5", "clean", "all")
+    cli_calls.call_subprocess("mise", "prune", "-y")
+    cli_calls.call_subprocess("mise", "cache", "clear", "-y")
 
 
 if __name__ == "__main__":
