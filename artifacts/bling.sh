@@ -52,7 +52,7 @@ fi
 # Atuin shell integration is disabled by default
 # The atuin binary is still installed and available for manual use
 # To enable shell integration, uncomment the following line or add it to your shell config:
-# [ "$(command -v atuin)" ] && eval "$(atuin init "${BLING_SHELL}" ${ATUIN_INIT_FLAGS})"
+[ "$(command -v atuin)" ] && eval "$(atuin init "${BLING_SHELL}" ${ATUIN_INIT_FLAGS})"
 [ "$(command -v starship)" ] && eval "$(starship init "${BLING_SHELL}")"
 [ "$(command -v zoxide)" ] && eval "$(zoxide init "${BLING_SHELL}")"
 
