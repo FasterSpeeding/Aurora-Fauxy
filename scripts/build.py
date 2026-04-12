@@ -1,38 +1,21 @@
-import pathlib
 import exceptions
-import environ
+import constants
 
-import linking
 import cli_calls
-import fx_cast
-
-
-BLING_PATH = pathlib.Path("/usr") / "share" / "ublue-os" / "bling" / "bling.sh"
-SKEL_PATH = pathlib.Path("/etc") / "skel"
 
 
 def main() -> None:
     print("Running build tasks")
-
-    # Copy artifacts
-    linking.copy_tree(environ.BASE_DIR / "artifacts", environ.ARTIFACTS_PATH)
+    fx_arch = constants.FxArchs.from_os()
 
     # Install tooling.
 
-    fx_cast.install_fx_cast_bridge()
-
     cli_calls.call_subprocess("dnf5", "copr", "enable", "jdxcode/mise", "-y")
-
     cli_calls.call_subprocess(
         "dnf5", "install", "-y", "mangohud", "mise", "screen", "waydroid"
     )
 
-    # Override bling.sh from Project bluefin's common config to fix bash-preexec and Atuin integration.
-    print(f"Overriding {BLING_PATH} to fix bash-preexec and atuin")
-    (environ.ARTIFACTS_PATH / "bling.sh").copy(BLING_PATH)
-
     # Initialise dotfiles in the skeleton directory
-    # TODO: disable cache, check if source path is working properly
     cli_calls.call_subprocess(
         "mise",
         "exec",
@@ -41,9 +24,21 @@ def main() -> None:
         "chezmoi",
         "init",
         "--apply",
-        environ.DOTFILES_REPO,
+        constants.DOTFILES_REPO,
         "--destination",
-        str(SKEL_PATH),
+        str(constants.SKEL_PATH),
+        "--cache",
+        str(constants.CHEZMOI_CACHE_PATH),
+        extra_env={
+            "DOTFILE_SERVICES": constants.DOTFILE_SERVICES,
+            "FX_ARCH": fx_arch.value,
+            "FX_RPM_REL_PATH": constants.FX_RPM_REL_PATH,
+        },
+    )
+
+    # Post-sync installs.
+    cli_calls.call_subprocess(
+        "dnf5", "install", "-y", str(constants.SKEL_PATH / constants.FX_RPM_REL_PATH)
     )
 
 

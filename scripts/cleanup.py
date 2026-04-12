@@ -2,6 +2,7 @@ import pathlib
 import shutil
 
 import cli_calls
+import constants
 import exceptions
 
 
@@ -26,6 +27,10 @@ def main() -> None:
     cli_calls.call_subprocess("dnf5", "clean", "all")
     cli_calls.call_subprocess("mise", "prune", "-y")
     cli_calls.call_subprocess("mise", "cache", "clear", "-y")
+
+    # Cleanup cache
+    if constants.CHEZMOI_CACHE_PATH.exists():
+        shutil.rmtree(str(constants.CHEZMOI_CACHE_PATH))
 
 
 if __name__ == "__main__":
