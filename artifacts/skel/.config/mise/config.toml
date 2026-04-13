@@ -23,7 +23,7 @@ uv = "0.11.6"
 just = "1.49.0"
 kubeseal = "0.36.0"
 minikube = "1.38.1"
-opentofu = "1.11.5"
+opentofu = "1.11.6"
 "pipx:kseal" = "2.0.2"
 "pipx:yt-dlp" = "2026.3.17"
 
