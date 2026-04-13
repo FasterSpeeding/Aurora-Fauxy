@@ -25,7 +25,6 @@ class FxArchs(str, enum.Enum):
 
 BASE_DIR = pathlib.Path(pathlib.Path(__file__).parent)
 DOTFILES_REPO = os.environ["DOTFILES_REPO"]
-DOTFILE_SERVICES = "fx_cast"
 FX_RPM_REL_PATH = ".local/state/dotfiles/fx_cast_bridge.rpm"
 
 CHEZMOI_CACHE_PATH = pathlib.Path(os.environ["CHEZMOI_CACHE"])

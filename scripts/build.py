@@ -30,7 +30,6 @@ def main() -> None:
         "--cache",
         str(constants.CHEZMOI_CACHE_PATH),
         extra_env={
-            "DOTFILE_SERVICES": constants.DOTFILE_SERVICES,
             "FX_ARCH": fx_arch.value,
             "FX_RPM_REL_PATH": constants.FX_RPM_REL_PATH,
         },
