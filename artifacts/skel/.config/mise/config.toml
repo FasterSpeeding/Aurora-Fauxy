@@ -5,7 +5,7 @@ krew = "https://github.com/soupglasses/mise-krew.git#2.0.0"
 # Changes will not be persisted
 [tools]
 # Languages
-go = "1.26.1"
+go = "1.26.2"
 python = "3"
 rust = { version = "1.94.1", components = "rustc,cargo" }
 # CLI tools
