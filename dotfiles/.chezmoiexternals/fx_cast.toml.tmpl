@@ -1,0 +1,3 @@
+[{{ .rpmPath | quote }}]
+type = "file"
+url = {{ gitHubReleaseAssetURL "hensm/fx_cast" (printf "v%s" .fxVer) (printf "fx_cast_bridge-%s-%s.rpm" .fxVer .fxArch) | quote }}

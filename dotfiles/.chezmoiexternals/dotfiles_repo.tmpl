@@ -1,0 +1,6 @@
+type = "archive"
+url = {{ printf "https://github.com/FasterSpeeding/dotfiles/archive/%s.tar.gz" .dotfilesRepoHash | quote }}
+exact = false
+stripComponents = 1
+refreshPeriod = "168h"
+targetPath = "./"
