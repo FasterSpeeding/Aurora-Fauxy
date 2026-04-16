@@ -4,8 +4,6 @@
 Description=fx_cast daemon
 
 [Service]
-User={{ EXPECTED_USERNAME }}
-Group={{ EXPECTED_USERNAME }}
 ExecStart=/usr/sbin/fx_cast/fx_cast_bridge -d
 Restart=always
 KillSignal=SIGKILL

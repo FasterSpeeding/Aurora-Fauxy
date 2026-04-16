@@ -1,0 +1,11 @@
+{{ if eq .chezmoi.arch "amd64" }}
+    {{- $fxArch = "x64" }}
+{{ else }}
+    {{- $fxArch = .chezmoi.arch }}
+{{ end }}
+
+{{- $rpmPath = env FX_RPM_PATH_REL | default (printf "%s/%s/fx_cast_bridge.rpm" .user_state_dir) -}}
+
+[data]
+fxArch = {{ $fxArch | quote }}
+rpmPath = {{ $rpmPath | quote }}
