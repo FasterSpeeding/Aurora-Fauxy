@@ -7,7 +7,7 @@ krew = "https://github.com/soupglasses/mise-krew.git#2.0.0"
 # Languages
 go = "1.26.3"
 python = "3"
-rust = { version = "1.94.1", components = "rustc,cargo" }
+rust = { version = "1.95.0", components = "rustc,cargo" }
 # CLI tools
 cargo-binstall = "1.15.6"
 chezmoi = "2.70.3"
