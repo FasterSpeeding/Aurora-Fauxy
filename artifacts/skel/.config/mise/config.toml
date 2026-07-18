@@ -25,7 +25,7 @@ kubeseal = "0.36.6"
 minikube = "1.38.1"
 opentofu = "1.12.0"
 "pipx:kseal" = "2.1.1"
-"pipx:yt-dlp" = "2026.6.9"
+"pipx:yt-dlp" = "2026.7.4"
 
 [settings]
 activate_aggressive = true
