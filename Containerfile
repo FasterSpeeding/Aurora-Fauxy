@@ -9,7 +9,6 @@ RUN --mount=type=bind,source=/,target=/ctx,readonly \
     pushd /ctx && \
     bash ./build_scripts/call_python.bash build && \
     bash ./build_scripts/call_python.bash cleanup && \
-    popd && \
-    ostree container commit
+    popd
 
 RUN bootc container lint --fatal-warnings --no-truncate
