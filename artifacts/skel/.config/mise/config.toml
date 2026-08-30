@@ -11,7 +11,7 @@ rust = { version = "1.98.0", components = "rustc,cargo" }
 # CLI tools
 cargo-binstall = "1.22.0"
 chezmoi = "2.71.0"
-flux2 = "2.8.7"
+flux2 = "2.9.4"
 git-lfs = "3.7.1"
 "go:github.com/schollz/croc/v10" = "v10.7.0"
 helm = "4.2.3"
