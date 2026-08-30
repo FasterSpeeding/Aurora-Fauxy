@@ -11,6 +11,7 @@ rust = { version = "1.95.0", components = "rustc,cargo" }
 # CLI tools
 cargo-binstall = "1.19.1"
 chezmoi = "2.71.0"
+claude = "2.1.251"
 flux2 = "2.8.7"
 git-lfs = "3.7.1"
 "go:github.com/schollz/croc/v10" = "v10.4.3"
@@ -25,6 +26,7 @@ kubeseal = "0.36.6"
 minikube = "1.38.1"
 opentofu = "1.12.0"
 "pipx:kseal" = "2.1.1"
+tmux = "3.7c"
 "pipx:yt-dlp" = "2026.6.9"
 
 [settings]
