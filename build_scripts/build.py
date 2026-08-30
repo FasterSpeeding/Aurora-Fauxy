@@ -29,7 +29,7 @@ def main() -> None:
     cli_calls.call_subprocess("dnf5", "copr", "enable", "jdxcode/mise", "-y")
 
     cli_calls.call_subprocess(
-        "dnf5", "install", "-y", "mangohud", "mise", "screen", "waydroid"
+        "dnf5", "install", "-y", "krfb", "mangohud", "mise", "screen", "waydroid"
     )
 
     # Copy executables to /usr/bin and /usr/sbin
