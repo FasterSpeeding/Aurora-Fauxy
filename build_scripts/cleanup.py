@@ -5,7 +5,7 @@ import cli_calls
 import exceptions
 
 
-_DIRS_TO_DELETE = [pathlib.Path("/var/lib/dnf"), pathlib.Path("/var/lib/waydroid")]
+_DIRS_TO_DELETE = [pathlib.Path("/var/lib/dnf"), pathlib.Path("/var/lib/waydroid"), pathlib.Path("/run")]
 
 
 def main() -> None:
