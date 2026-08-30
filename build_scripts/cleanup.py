@@ -5,13 +5,15 @@ import cli_calls
 import exceptions
 
 
-_DIRS_TO_DELETE = [pathlib.Path("/var/lib/dnf"), pathlib.Path("/var/lib/waydroid")]
+_DIRS_TO_DELETE = [
+    "/var/lib/dnf", "/var/lib/waydroid", "/run/dnf", "/run/screen", "/run/selinux-policy"
+]
 
 
 def main() -> None:
     print("Running cleanup tasks")
 
-    for path in _DIRS_TO_DELETE:
+    for path in map(pathlib.Path, _DIRS_TO_DELETE):
         if path.is_dir():
             print(f"Removing directory {path!s}")
             shutil.rmtree(str(path))
