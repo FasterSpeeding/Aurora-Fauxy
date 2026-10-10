@@ -9,7 +9,7 @@ go = "1.26.5"
 python = "3"
 rust = { version = "1.98.1", components = "rustc,cargo" }
 # CLI tools
-cargo-binstall = "1.23.0"
+cargo-binstall = "1.25.3"
 chezmoi = "2.71.0"
 coder = "2.29.10"
 claude = "2.1.251"
